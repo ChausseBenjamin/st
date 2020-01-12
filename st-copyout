@@ -9,4 +9,17 @@ sed -n "w $tmpfile"
 ps1="$(grep "\S" "$tmpfile" | tail -n 1 | sed 's/^\s*//' | cut -d' ' -f1)"
 chosen="$(grep -F "$ps1" "$tmpfile" | sed '$ d' | tac | rofi -dmenu -p "Copy which command's output?" -i -l 10 | sed 's/[^^]/[&]/g; s/\^/\\^/g')"
 eps1="$(echo "$ps1" | sed 's/[^^]/[&]/g; s/\^/\\^/g')"
-awk "/^$chosen$/{p=1;print;next} p&&/$eps1/{p=0};p" "$tmpfile" | xclip -selection clipboard
+
+snippet=$(awk "/^$chosen$/{p=1;print;next} p&&/$eps1/{p=0};p" "$tmpfile" | sed "s/π\ sudo/#/; s/π/\$/; s/(master)//; s/\[sudo\].*$//")
+
+method=$(printf "Plain\nMarkdown\nArch Forums\nLaTeX" | rofi -dmenu -p "What formating do you want?" -i -l 10)
+
+# awk "/^$chosen$/{p=1;print;next} p&&/$eps1/{p=0};p" "$tmpfile" | sxel -b
+
+case "$method" in
+	*Markdown*) notify-send -i "$HOME/.fonts/svg/paste.svg" -a Clipboard "Copied entry with Markdown formating." && printf "\`\`\`\n$snippet\n\`\`\`" | xsel -b ;;
+	*Arch*)  notify-send -i "$HOME/.fonts/svg/paste.svg" -a Clipboard "Copied entry with Arch Forums formating." && printf "[code]\n$snippet\n[/code]" | xsel -b ;;
+	*TeX*) notify-send -i "$HOME/.fonts/svg/paste.svg" -a Clipboard "Copied entry with LaTeX formating." && printf '\\begin{verbatim}\n$snippet\n\\end{verbatim}' | xsel -b ;;
+	*) notify-send -i "$HOME/.fonts/svg/paste.svg" -a Clipboard "Copied entry with plain formating." && printf "$snippet" | xsel -b ;;
+esac
+
