@@ -2,7 +2,7 @@
 
 The [suckless terminal (st)](https://st.suckless.org/) with some additional features that make it literally the best terminal emulator ever:
 
-## Unique features (using rofi)
+## Unique features (using dmenu)
 
 + **follow urls** by pressing `alt-l`
 + **copy urls** in the same way with `alt-y`
@@ -69,6 +69,10 @@ To be clear about the color settings:
 - But if `wal` has run in your session, its colors will take priority.
 
 Note that when you run `wal`, it will negate the transparency of existing windows, but new windows will continue with the previously defined transparency.
+
+## Crashing error
+
+If st crashes when viewing emojis, install `[libxft-bgra](https://aur.archlinux.org/packages/libxft-bgra/)` from the AUR.
 
 ## Contact
 
