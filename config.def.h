@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Apercu Nerd Font:pixelsize=16:antialias=true:autohint=true";
+static char *font = "monospace:pixelsize=16:antialias=true:autohint=true";
 static char *font2[] = { "Spleen 32x64:pixelsize=15:antialias=true:autohint=true" };
 static int borderpx = 2;
 
