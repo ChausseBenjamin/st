@@ -10,7 +10,7 @@ static char *font2[] = { "Spleen 32x64:pixelsize=15:antialias=true:autohint=true
 static int borderpx = 2;
 
 /*
- * What program is execed by st depends of these precedence rules:
+ * What program is executed by st depends of these precedence rules:
  * 1: program passed with -e
  * 2: utmp option
  * 3: SHELL environment variable
@@ -43,8 +43,8 @@ static unsigned int tripleclicktimeout = 600;
 int allowaltscreen = 1;
 
 /* frames per second st should at maximum draw to the screen */
-static unsigned int xfps = 120;
-static unsigned int actionfps = 30;
+static unsigned int xfps = 76;
+static unsigned int actionfps = 76;
 
 /*
  * blinking timeout (set to 0 to disable blinking) for the terminal blinking
@@ -62,7 +62,7 @@ int ximspot_update_interval = 1000;
 /*
  * thickness of underline and bar cursors
  */
-static unsigned int cursorthickness = 2;
+static unsigned int cursorthickness = 3;
 
 /*
  * bell volume. It must be a value between -100 and 100. Use 0 for disabling
@@ -88,14 +88,16 @@ char *termname = "st-256color";
  *
  *	stty tabs
  */
-unsigned int tabspaces = 8;
+unsigned int tabspaces = 2;
 
 /* bg opacity */
-float alpha = 0.72;
+float alpha = 1;
+/* float alpha = 0.72; */
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-	"#282828", /* hard contrast: #1d2021 / soft contrast: #32302f */
+	/* "#282828", /1* hard contrast: #1d2021 / soft contrast: #32302f *1/ */
+	"#111A1F", /* hard contrast: #1d2021 / soft contrast: #32302f */
 	"#cc241d",
 	"#98971a",
 	"#d79921",
@@ -125,7 +127,8 @@ static const char *colorname[] = {
  * foreground, background, cursor, reverse cursor
  */
 unsigned int defaultfg = 259;
-unsigned int defaultbg = 258;
+unsigned int defaultbg = 0;
+/* unsigned int defaultbg = 258; */
 static unsigned int defaultcs = 256;
 static unsigned int defaultrcs = 257;
 
@@ -136,7 +139,7 @@ static unsigned int defaultrcs = 257;
  * 6: Bar ("|")
  * 7: Snowman ("☃")
  */
-static unsigned int cursorshape = 2;
+static unsigned int cursorshape = 4;
 
 /*
  * Default columns and rows numbers
