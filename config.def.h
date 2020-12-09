@@ -4,13 +4,15 @@
  * appearance
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
+ * borderperc: percentage of cell width to use as a border
+ *		0 = no border, 100 = border width is same as cell width
  */
 static char *font = "monospace:pixelsize=16:antialias=true:autohint=true";
 static char *font2[] = { "Spleen 32x64:pixelsize=15:antialias=true:autohint=true" };
-static int borderpx = 2;
+static int borderperc = 20;
 
 /*
- * What program is executed by st depends of these precedence rules:
+ * What program is execed by st depends of these precedence rules:
  * 1: program passed with -e
  * 2: utmp option
  * 3: SHELL environment variable
@@ -115,10 +117,6 @@ static const char *colorname[] = {
 	"#ebdbb2",
 	[255] = 0,
 	/* more colors can be added after 255 to use with DefaultXX */
-	"#add8e6", /* 256 -> cursor */
-	"#555555", /* 257 -> rev cursor*/
-	"#0c1012", /* 258 -> bg */
-	"#ebdbb2", /* 259 -> fg */
 };
 
 
@@ -126,11 +124,11 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 259;
+unsigned int defaultfg = 3;
 unsigned int defaultbg = 0;
 /* unsigned int defaultbg = 258; */
-static unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 257;
+static unsigned int defaultcs = 3;
+static unsigned int defaultrcs = 6;
 
 /*
  * Default shape of cursor
@@ -193,7 +191,7 @@ ResourcePref resources[] = {
 		{ "blinktimeout", INTEGER, &blinktimeout },
 		{ "bellvolume",   INTEGER, &bellvolume },
 		{ "tabspaces",    INTEGER, &tabspaces },
-		{ "borderpx",     INTEGER, &borderpx },
+		{ "borderperc",   INTEGER, &borderperc },
 		{ "cwscale",      FLOAT,   &cwscale },
 		{ "chscale",      FLOAT,   &chscale },
 		{ "alpha",        FLOAT,   &alpha },
