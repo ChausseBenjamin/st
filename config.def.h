@@ -7,8 +7,8 @@
  * borderperc: percentage of cell width to use as a border
  *		0 = no border, 100 = border width is same as cell width
  */
-static char *font = "monospace:pixelsize=16:antialias=true:autohint=true";
-static char *font2[] = { "Spleen 32x64:pixelsize=15:antialias=true:autohint=true" };
+static char *font = "monospace:pixelsize=32:antialias=true:autohint=true";
+static char *font2[] = { "Spleen 32x64:pixelsize=24:antialias=true:autohint=true" };
 static int borderperc = 20;
 
 /*
@@ -60,6 +60,18 @@ static unsigned int blinktimeout = 800;
  * whom need XIM support.
  */
 int ximspot_update_interval = 1000;
+
+/*
+ * 1: render most of the lines/blocks characters without using the font for
+ *    perfect alignment between cells (U2500 - U259F except dashes/diagonals).
+ *    Bold affects lines thickness if boxdraw_bold is not 0. Italic is ignored.
+ * 0: disable (render all U25XX glyphs normally from the font).
+ */
+const int boxdraw = 1;
+const int boxdraw_bold = 1;
+
+/* braille (U28XX):  1: render as adjacent "pixels",  0: use font */
+const int boxdraw_braille = 0;
 
 /*
  * thickness of underline and bar cursors
